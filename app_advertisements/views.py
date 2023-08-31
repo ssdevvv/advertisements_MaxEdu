@@ -5,7 +5,6 @@ from .forms import AdvertisementForm
 from django.contrib.auth.decorators import login_required
 
 
-
 def index(request):
     advertisements = Advertisement.objects.all()
     context = {'advertisements': advertisements}
@@ -14,6 +13,21 @@ def index(request):
 
 def top_sellers(request):
     return render(request, 'app_adv/top-sellers.html')
+
+
+def advertisement(request):
+    return render(request, 'app_adv/advertisement.html')
+
+
+def login(request):
+    return render(request, 'app_auth/login.html')
+
+def register(request):
+    return render(request, 'app_auth/register.html')
+
+def profile(request):
+    return render(request, 'app_auth/profile.html')
+
 
 @login_required(login_url=reverse_lazy('login'))
 def advertisement_post(request):

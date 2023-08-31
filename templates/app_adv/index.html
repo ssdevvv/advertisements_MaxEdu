@@ -21,8 +21,9 @@
       <span style="font-weight: bold;">Разместить объявление</span>
     </a>
   </li>
+  {% if not user.is_authenticated %}
   <li class="nav-item">
-    <a class="nav-link" href="../app_auth/register.html">
+    <a class="nav-link" href="{% url 'register' %}">
       <span style="font-weight: bold;">Регистрация</span>
     </a>
   </li>
@@ -31,16 +32,20 @@
       <span style="font-weight: bold;">Войти</span>
     </a>
   </li>
+  {% endif %}
+
+  {% if user.is_authenticated %}
   <li class="nav-item">
     <a class="nav-link" href="{% url 'profile' %}">
       <span style="font-weight: bold;">Профиль</span>
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#">
+    <a class="nav-link" href="{% url 'logout' %}">
       <span style="font-weight: bold;">Выйти</span>
     </a>
   </li>
+  {% endif %}
 </ul>
 
 <div id="carouselExampleControls" class="carousel slide bg-primary" data-bs-ride="carousel">
@@ -99,7 +104,7 @@
     <div class="card mb-2" style="max-width: 1200px; margin-top: 20px;">
       <div class="row g-0">
         <div class="col-md-4">
-          <a href="advertisement.html" class="nav-link">
+          <a href="{% url 'adv' %}" class="nav-link">
             <img src="{% if adv.image %} {{ adv.image.url }} {% else %} {% static 'img/adv.png' %} {% endif %}" class="img-fluid rounded-start" alt="Card title">
           </a>
         </div>
